@@ -6,11 +6,32 @@ const Zip = mongoose.model("zip");
 
 const getAll = function (request, response) {
     console.log('getAll cities controller');
-    Zip.find().limit(10).exec()
+    let offset = 0;
+    let limit = 10;
+    let responseData = {
+        totalCount: "",
+        cities: "",
+    }
+    if (request.query && request.query.offset) {
+        offset = request.query.offset;
+    }
+    if (request.query && request.query.limit) {
+        limit = request.query.limit;
+    }
+
+    Zip.find().skip(offset).limit(limit).exec()
         .then(cities => {
-            response.status(200).json(cities)
+            responseData.cities = cities;
+            return Zip.countDocuments();
+        })
+        .then(count => {
+
+            responseData.totalCount = count;
+            console.log(responseData)
+            response.status(200).json(responseData)
         })
         .catch(error => console.log(error))
+
 }
 
 const getOne = function (request, response) {

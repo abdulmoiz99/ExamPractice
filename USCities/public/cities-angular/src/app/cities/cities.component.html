@@ -1,5 +1,7 @@
 <ul>
-    <li *ngFor="let city of cities">
+    <li *ngFor="let city of CitiesResponse.cities">
         <a routerLink="/cities/{{city._id}}">{{city.city}}, {{city.state}}</a>
     </li>
 </ul>
+<button (click)="previousCities()" [disabled]=isPreviousDisable>Previous</button>
+<button (click)="nextCities()" [disabled]=isNextDisable>Next</button>
