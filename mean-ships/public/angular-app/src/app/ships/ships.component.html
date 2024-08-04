@@ -1,0 +1,17 @@
+Number of ships to display each page
+<select (change)="onLimitChange($event)">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="50">50</option>
+</select>
+
+The list of Ships are:<br />
+
+<ul>
+    <li *ngFor="let ship of shipResponse.ships">
+        <a routerLink="{{ship._id}}">{{ship.depth}} - {{ship.coordinates}} - {{ship.feature_type}}</a>
+    </li>
+</ul>
+
+<button (click)="onPrevClick()" [disabled]="isPreviousDisable">Previous</button>
+<button (click)="onNextClick()" [disabled]="isNextDisable">Next</button>

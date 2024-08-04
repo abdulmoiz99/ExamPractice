@@ -1,0 +1,16 @@
+<form [formGroup]="searchForm" (ngSubmit)="search(searchForm)">
+    <div>
+        <label> Latitude:</label> <br />
+        <input name="latitude" id="latitude">
+    </div>
+    <div>
+        <label> Longitude:</label> <br />
+        <input name="longitude" id="longitude">
+    </div>
+    <div>
+        <label> Distance:</label> <br />
+        <input name="distance" id="distance">
+    </div>
+    <br />
+    <button type="submit">Search</button>
+</form>
